@@ -1,0 +1,47 @@
+<div class="tab">
+    <button id="accountmod-button" class="tablinks">Cuenta</button>
+    <button id="address-button" class="tablinks">Direcciones</button>
+</div>
+
+<div id="Cuenta" class="tabcontent">
+    <h3>Datos</h3>
+    <p>Aquí puedes modificar los datos de tu cuenta</p>
+    <div class="modal-body">
+        <div class="input-container">
+            <label id="password-label" for="password">Contraseña:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+    </div>
+    <button id="save-changes-button">Guardar Cambios</button>
+</div>
+
+<div id="Direcciones" class="tabcontent" style="display: none;">
+    <h3>Direcciones</h3>
+    <p>Aquí puede agregar y modificar sus direcciones.</p>
+    <button id="add-address-button"> &#43; Agregar direccion</button>
+    <div class="table-container">
+        <table id="address-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template id="address-row-template">
+                    <tr class="address-row">
+                        <td class="address-name"></td>
+                        <td>
+                            <button class="edit-button" id="see-button" title="Observar">&#128065; </button>
+                            <button class="delete-button" title="Eliminar">&#128465;</button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>

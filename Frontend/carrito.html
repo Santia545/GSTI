@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <main style="display: flex;flex-direction: column; align-items: center; padding: 20px;">
+        <h1 style="padding: 20px 0 20px 0">Carrito</h1>
+        <div class="table-container">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template id="cart-row-template">
+                        <tr class="cart-row">
+                            <td>
+                                <a class="cart-sku"></a>
+                            </td>
+                            <td class="cart-nombre"></td>
+                            <td class="cart-cantidad"></td>
+                            <td class="cart-precio-unitario"></td>
+                            <td class="cart-subtotal"></td>
+                            <td>
+                                <button class="edit-button" title="Editar">&#9998;</button>
+                                <button class="delete-button" title="Eliminar">&#128465;</button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>Total:</td>
+                        <td id="cart-total"></td>
+                        <td></td>
+                    </tr>
+            </table>
+
+        </div>
+        <div style="max-width: 1000px; display: flex; flex-direction: column; align-items: flex-end; width: 100%;">
+            <button id="buy-button" style="max-width: 100px; margin-left: auto; "> Comprar</button>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/carrito.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.12.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
+    "puppeteer": "^24.4.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

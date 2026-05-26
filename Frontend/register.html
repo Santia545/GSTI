@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <main style="display: flex; justify-content: center; align-items: center; ">
+        <div class="login-container">
+            <h2>Registro</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="cpassword">Confirmar Contraseña:</label>
+                <input type="password" id="cpassword" name="cpassword" required>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script type="module" src="js/register.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>

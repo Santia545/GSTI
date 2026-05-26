@@ -1,0 +1,167 @@
+<div class="tab">
+    <button id="users-button" class="tablinks">Usuarios</button>
+    <button id="products-button" class="tablinks">Productos</button>
+    <button id="sells-button" class="tablinks">Ventas</button>
+    <button id="history-button" class="tablinks">Historial</button>
+    <button id="address-button" class="tablinks">Direcciones</button>
+</div>
+
+<div id="Usuarios" class="tabcontent" style="display: flex;">
+    <h3>Usuarios</h3>
+    <p>Aquí puede registrar, modificar y eliminar usuarios.</p>
+    <button id="add-user-button"> &#43; Agregar usuario</button>
+    <div class="table-container">
+        <table id="users-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+            <template id="user-row-template">
+                <tr class="user-row">
+                    <td class="user-name"></td>
+                    <td class="user-role"></td>
+                    <td class="user-email"></td>
+                    <td>
+                        <button class="edit-button" title="Editar">&#9998; </button>
+                        <button class="delete-button" title="Eliminar">&#128465;</button>
+                    </td>
+                </tr>
+            </template>
+        </table>
+    </div>
+</div>
+
+<div id="Productos" class="tabcontent" style="display: none;">
+    <h3>Productos</h3>
+    <p>Aquí puede agregar y modificar productos.</p>
+    <button id="add-product-button"> &#43; Agregar producto</button>
+    <div class="table-container">
+
+        <table id="products-table">
+            <thead>
+
+                <tr>
+                    <th>SKU</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template id="product-row-template">
+                    <tr class="product-row">
+                        <td class="product-sku"></td>
+                        <td class="product-name"></td>
+                        <td class="product-price"></td>
+                        <td>
+                            <button class="edit-button" title="Editar">&#9998; </button>
+                            <button class="delete-button" title="Eliminar">&#128465;</button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="Ventas" class="tabcontent" style="display: none;">
+    <h3>Ventas</h3>
+    <p>Lista de ventas.</p>
+    <div class="table-container">
+        <table id="ventas-table">
+            <thead>
+                <tr>
+                    <th>Mes</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template id="venta-row-template">
+                    <tr class="venta-row">
+                        <td class="venta-month"></td>
+                        <td class="venta-total"></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="Historial" class="tabcontent" style="display: none;">
+    <h3>Historial</h3>
+    <p>Lista de historial.</p>
+    <div class="table-container">
+        <table id="bitacoras-table">
+            <thead>
+                <tr>
+                    <th>Accion</th>
+                    <th>Fecha</th>
+                    <th>Tabla</th>
+                    <th>Usuario</th>
+                    <th>Contrasentencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template id="bitacora-row-template">
+                    <tr class="bitacora-row">
+                        <td class="bitacora-action"></td>
+                        <td class="bitacora-date"></td>
+                        <td class="bitacora-table"></td>
+                        <td class="bitacora-user"></td>
+                        <td class="bitacora-contrasentence"></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="Direcciones" class="tabcontent" style="display: none;">
+    <h3>Direcciones</h3>
+    <p>Aquí puede agregar y modificar tus propias direcciones de envio.</p>
+    <button id="add-address-button"> &#43; Agregar direccion</button>
+    <div class="table-container">
+        <table id="address-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template id="address-row-template">
+                    <tr class="address-row">
+                        <td class="address-name"></td>
+                        <td>
+                            <button class="edit-button" id="see-button" title="Observar">&#128065; </button>
+                            <button class="delete-button" title="Eliminar">&#128465;</button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="pagination-controls">
+    <button id="prev-page">&lt;</button>
+    <button id="next-page">&gt;</button>
+    <div style="display: flex; flex-direction: column; ">
+        <label for="order-select">Ordenar por:</label>
+        <select id="order-select">
+            <option value="ASC">Ascendente</option>
+            <option value="DESC">Descendente</option>
+        </select>
+    </div>
+    <div style="display: flex; flex-direction: column; ">
+        <label for="order-select">Mostrar:</label>
+        <select id="limit-select">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <main style="display: flex; justify-content: center; align-items: center; ">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Iniciar sesion</button>
+            </form>
+            <p style="text-align: center; margin-top: 10px;">
+                ¿No tienes una cuenta? <a href="register.html">Registrate</a>
+            </p>
+        </div>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>
