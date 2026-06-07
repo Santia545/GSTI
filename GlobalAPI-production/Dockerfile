@@ -1,5 +1,11 @@
 FROM node:18-alpine
-
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
 # Create app directory
 WORKDIR /usr/src/app
 
