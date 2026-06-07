@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: globalapi_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword
+      MYSQL_DATABASE: global
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  globalapi:
+    build: .
+    container_name: globalapi
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - HOST=db
+      - PORT=3306
+      - PASSWORD=examplepassword
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./:/usr/src/app:ro
+
+volumes:
+  db_data:
