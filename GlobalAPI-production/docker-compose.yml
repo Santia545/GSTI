@@ -3,9 +3,8 @@ services:
     image: mariadb:lts-ubi10
     container_name: globalapi_db
     restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: examplepassword
-      MARIADB_DATABASE: global
+    env_file:
+      - .env
     volumes:
       - db_data:/var/lib/mysql
     ports:
