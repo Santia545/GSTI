@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import { generatePdf } from "./pdfGenerator.js";
+//import { generatePdf } from "./pdfGenerator.js";
 
 dotenv.config();
 
@@ -43,8 +43,8 @@ const sendEmail = async (toEmail, content, isPaypal = false) => {
             <p> 109931</p>
         </body>
         </html>`;
-        const pdfBuffer = await generatePdf(pdfContent);
-        attachment = { filename: "purchase_summary.pdf", content: pdfBuffer };
+        //const pdfBuffer = await generatePdf(pdfContent);
+       // attachment = { filename: "purchase_summary.pdf", content: pdfBuffer };
     }
 
     const transporter = nodemailer.createTransport({
