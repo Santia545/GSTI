@@ -21,10 +21,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      - HOST=db
-      - PORT=3306
-      - PASSWORD=examplepassword
+    env_file:
+      - api.env
     depends_on:
       db:
         condition: service_healthy
