@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <main style="display: flex; justify-content: center; align-items: center; ">
+        <div class="login-container">
+            <h2>2FA</h2>
+            <form id="2FA-form">
+                <p>Se ha enviado un codigo de verificacion a tu correo, ingresa para continuar</p>
+                <BR>
+                <label for="2fa">Codigo de autenticacion:</label>
+                <input type="text" id="2fa" name="2fa" required>
+                <button type="submit">Verificar Codigo</button>
+            </form>
+            <p style="text-align: center; margin-top: 10px;">
+                ¿No te llegó el codigo?, intenta de nuevo <a href="login.html">Iniciar sesion</a>
+            </p>
+        </div>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script type="module" src="js/2fa.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 import { removeJWT } from "./auth.js";
 
-const serverUrl = 'https://musiczonecontapp.victoriouswater-3c70f154.northcentralus.azurecontainerapps.io';
+const serverUrl = 'http://localhost:3000';
 
 async function fetchData(urlPath, method, body = null) {
     let url = `${serverUrl}${urlPath}`;

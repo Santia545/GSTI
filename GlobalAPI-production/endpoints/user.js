@@ -1,6 +1,17 @@
 import { generateToken } from "../auth.js";
 import { queryDB } from "../db.js";
 import bcrypt from "bcrypt";
+import { randomInt } from "crypto";
+import { send2FAEmail } from "../services/smtp.js";
+function generateCode(length = 6) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let code = '';
+    for (let i = 0; i < length; i++) {
+        code += chars[randomInt(0, chars.length)];
+    }
+    return code;
+}
+
 
 const login = async (req, res) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
@@ -22,10 +33,65 @@ const login = async (req, res) => {
         res.writeHead(401);
         return res.end(JSON.stringify({ error: "Invalid credentials" }));
     }
-    const token = generateToken(user[0]);
-    res.writeHead(200);
-    res.end(JSON.stringify({ token }));
+    try {
+        const twoFaCode = generateCode(6);
+        await queryDB('INSERT INTO 2FA (username, code) VALUES (?, ?) ON DUPLICATE KEY UPDATE code = VALUES(code), created_at = CURRENT_TIMESTAMP', [username, twoFaCode]);
+        await send2FAEmail(user[0].Email, twoFaCode);
+        res.writeHead(201);
+        return res.end(JSON.stringify({ username }));
+    } catch (error) {
+        res.writeHead(400);
+        res.end(JSON.stringify({ error: "Token generation failed" }));
+    }
+};
 
+const verify2FA = async (req, res) => {
+    let body = "";
+
+    req.on("data", chunk => {
+        body += chunk.toString();
+    });
+
+    req.on("end", async () => {
+        let jsonParsed;
+        try {
+            jsonParsed = JSON.parse(body);
+        } catch (error) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Invalid JSON" }));
+        }
+        const { code, username } = jsonParsed;
+        if (!code) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Code field is required" }));
+        }
+        if (!(code.length === 6)) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Code must be 6 characters long" }));
+        }
+        if (!username) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Username field is required" }));
+        }
+        const twoFaCode = await queryDB('SELECT * FROM 2FA WHERE username = ? AND code = ?', [username, code]);
+        if (twoFaCode.length === 0) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Invalid code" }));
+        }
+        if (new Date() - new Date(twoFaCode[0].created_at) > 5 * 60 * 1000) {
+            res.writeHead(400);
+            return res.end(JSON.stringify({ error: "Code expired" }));
+        }
+        try {
+            await queryDB('DELETE FROM 2FA WHERE username = ?', [username]);
+        } catch (error) {
+            console.log("Error deleting 2FA code:", error);
+        }
+        const user = await queryDB('SELECT * FROM users WHERE username = ?', [username]);
+        const token = generateToken(user[0]);
+        res.writeHead(200);
+        res.end(JSON.stringify({ token }));
+    });
 };
 
 const register = (req, res) => {
@@ -236,4 +302,4 @@ const changeUserDetails = (req, res) => {
 
     });
 };
-export { login, register, registerAdmin, deleteUser, modifyUser, selectUsers, changeUserDetails };
+export { login, verify2FA, register, registerAdmin, deleteUser, modifyUser, selectUsers, changeUserDetails };
