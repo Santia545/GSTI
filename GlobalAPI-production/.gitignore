@@ -1,3 +1,4 @@
 [Nn]ode_modules/
 .env
 api.env
+dbcontainer.env
