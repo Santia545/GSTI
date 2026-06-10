@@ -35,10 +35,5 @@ document.getElementById('login-form').addEventListener('submit', async function 
         showSnackbar('Error ' + JSON.parse(e.message).message);
         return;
     }
-    fetchData('/login', 'GET', { username, password }).then(data => {
-        setJWT(data.token);
-        window.location.href = 'index.html';
-    }).catch(() => {
-        showSnackbar('Credenciales invalidas');
-    });
+    window.location.href = 'login.html';
 });

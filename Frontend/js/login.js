@@ -23,8 +23,8 @@ document.getElementById('login-form').addEventListener('submit', function (event
             return;
         }
     fetchData('/login', 'GET', { username, password }).then(data => {
-        setJWT(data.token);
-        window.location.href = 'index.html';
+        sessionStorage.setItem('username', data.username);
+        window.location.href = 'login2fa.html';
     }).catch(() => {
         showSnackbar('Credenciales invalidas');
     });

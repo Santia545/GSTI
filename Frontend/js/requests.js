@@ -1,6 +1,6 @@
 import { removeJWT } from "./auth.js";
 
-const serverUrl = 'https://globalapi-production.up.railway.app';
+const serverUrl = 'https://musiczonecontapp.victoriouswater-3c70f154.northcentralus.azurecontainerapps.io';
 
 async function fetchData(urlPath, method, body = null) {
     let url = `${serverUrl}${urlPath}`;

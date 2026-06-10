@@ -3,7 +3,7 @@ import { selectBitacoras } from "./endpoints/bitacora.js";
 import { deleteCarrito, insertCarrito, selectCarrito, updateCarrito } from "./endpoints/carrito.js";
 import { deleteDireccion, insertDireccion, selectDireccion, selectDirecciones } from "./endpoints/direcciones.js";
 import { deleteProduct, insertProduct, selectProduct, selectProducts, updateProduct } from "./endpoints/producto.js";
-import { changeUserDetails, deleteUser, login, modifyUser, register, registerAdmin, selectUsers } from "./endpoints/user.js";
+import { changeUserDetails, deleteUser, login, verify2FA, modifyUser, register, registerAdmin, selectUsers } from "./endpoints/user.js";
 import { comprar, selectVentas } from "./endpoints/ventas.js";
 import { createOrder } from "./services/paypal.js";
 
@@ -16,6 +16,9 @@ const handleRequest = (req, res) => {
     }
     else if (req.method === "GET" && req.url.startsWith("/login")) {
         login(req, res);
+    }
+    else if (req.method === "POST" && req.url ==="/verify-2fa") {
+        verify2FA(req, res);
     }
     else if (req.method === "POST" && req.url === "/register") {
         register(req, res);
