@@ -1,2 +1,4 @@
 [Nn]ode_modules/
-.env
+.env*
+api.env
+dbcontainer.env
