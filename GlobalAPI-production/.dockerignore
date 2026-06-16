@@ -1,8 +1,0 @@
-node_modules
-backups
-*.log
-*.sql
-.env
-npm-debug.log
-Dockerfile
-.git
