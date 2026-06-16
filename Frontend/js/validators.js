@@ -9,7 +9,7 @@ function validateEmail(email) {
 function validatePassword(password) {
     return (String(password)
         .match(
-            /^([a-zA-Z0-9._-]{5,60})$/
+            /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9._-]{5,60}$/
         ))
 }
 
